@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
+
+import EditPosting from './EditPosting';
 
 import { DELETE_POSTING } from '../graphql/mutations';
 import { GET_POSTINGS } from '../graphql/queries';
 
 export default function PostingCard({ posting }) {
+	const [toggleEdit, setToggleEdit] = useState(false);
+
 	const [deletePosting] = useMutation(DELETE_POSTING, {
 		update(cache, { data: { deletePosting } }) {
 			const { postings } = cache.readQuery({ query: GET_POSTINGS });
@@ -18,7 +22,11 @@ export default function PostingCard({ posting }) {
 		},
 	});
 
-	const handleClick = () => {
+	const handleEdit = () => {
+		setToggleEdit(!toggleEdit);
+	};
+
+	const handleDelete = () => {
 		// console.log(posting.id);
 		deletePosting({ variables: { id: posting.id } });
 	};
@@ -43,7 +51,11 @@ export default function PostingCard({ posting }) {
 			<p>
 				<span className='bold'>Description:</span> {posting.description}
 			</p>
-			<button onClick={handleClick}>Delete</button>
+			{toggleEdit && <EditPosting posting={posting} />}
+			<button onClick={handleEdit}>
+				{toggleEdit ? 'Cancel Edit' : 'Edit'}
+			</button>
+			<button onClick={handleDelete}>Delete</button>
 		</div>
 	);
 }
