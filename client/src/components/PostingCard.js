@@ -7,6 +7,9 @@ export default function PostingCard({ posting }) {
 				<span>Coach:</span> {posting.coach}
 			</h3>
 			<p>
+				<span className='bold'>Title:</span> {posting.title}
+			</p>
+			<p>
 				<span className='bold'>Industry:</span> {posting.industry}
 			</p>
 			<p>
@@ -18,6 +21,7 @@ export default function PostingCard({ posting }) {
 			<p>
 				<span className='bold'>Description:</span> {posting.description}
 			</p>
+			<button>Delete</button>
 		</div>
 	);
 }

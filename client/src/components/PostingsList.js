@@ -1,21 +1,9 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 
 import PostingCard from './PostingCard';
 
-const GET_POSTINGS = gql`
-	query {
-		postings {
-			coach
-			title
-			industry
-			location
-			price
-			description
-		}
-	}
-`;
+import { GET_POSTINGS } from '../graphql/queries';
 
 export default function PostingsList() {
 	const { loading, error, data } = useQuery(GET_POSTINGS);
@@ -27,7 +15,9 @@ export default function PostingsList() {
 			{error && <p>Error! {error}</p>}
 			<div className='postings-wrapper'>
 				{data &&
-					data.postings.map(posting => <PostingCard posting={posting} />)}
+					data.postings.map(posting => (
+						<PostingCard key={posting.id} posting={posting} />
+					))}
 			</div>
 		</div>
 	);
