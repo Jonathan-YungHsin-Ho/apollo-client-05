@@ -27,3 +27,12 @@ export const ADD_POSTING = gql`
 		}
 	}
 `;
+
+export const DELETE_POSTING = gql`
+	mutation DeletePosting($id: String!) {
+		deletePosting(id: $id) {
+			id
+			coach
+		}
+	}
+`;

@@ -19,7 +19,6 @@ export default function AddPosting() {
 	const [addPosting] = useMutation(ADD_POSTING, {
 		update(cache, { data: { addPosting } }) {
 			const { postings } = cache.readQuery({ query: GET_POSTINGS });
-			console.log(postings);
 			cache.writeQuery({
 				query: GET_POSTINGS,
 				data: { postings: postings.concat([addPosting]) },
