@@ -1,4 +1,4 @@
-import { gql } from './node_modules/apollo-boost';
+import { gql } from 'apollo-boost';
 
 export const GET_POSTINGS = gql`
 	query {

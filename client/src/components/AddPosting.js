@@ -16,7 +16,16 @@ const initState = {
 export default function AddPosting() {
 	const [posting, setPosting] = useState(initState);
 
-	const [addPosting] = useMutation(ADD_POSTING, {});
+	const [addPosting] = useMutation(ADD_POSTING, {
+		update(cache, { data: { addPosting } }) {
+			const { postings } = cache.readQuery({ query: GET_POSTINGS });
+			console.log(postings);
+			cache.writeQuery({
+				query: GET_POSTINGS,
+				data: { postings: postings.concat([addPosting]) },
+			});
+		},
+	});
 
 	const handleChange = e => {
 		setPosting({

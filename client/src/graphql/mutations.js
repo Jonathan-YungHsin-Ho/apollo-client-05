@@ -1,4 +1,4 @@
-import { gql } from './node_modules/apollo-boost';
+import { gql } from 'apollo-boost';
 
 export const ADD_POSTING = gql`
 	mutation AddPosting(
@@ -17,6 +17,7 @@ export const ADD_POSTING = gql`
 			price: $price
 			description: $description
 		) {
+			id
 			coach
 			title
 			industry
