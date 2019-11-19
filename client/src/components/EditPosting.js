@@ -4,7 +4,10 @@ import { useMutation } from '@apollo/react-hooks';
 import { UPDATE_POSTING } from '../graphql/mutations';
 
 export default function EditPosting({ posting, handleEdit }) {
-	const [updatedPosting, setUpdatedPosting] = useState(posting);
+	const [updatedPosting, setUpdatedPosting] = useState({
+		...posting,
+		industry: posting.industry.name,
+	});
 
 	const [updatePosting] = useMutation(UPDATE_POSTING);
 

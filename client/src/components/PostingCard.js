@@ -12,7 +12,7 @@ export default function PostingCard({ posting }) {
 	const [deletePosting] = useMutation(DELETE_POSTING, {
 		update(cache, { data: { deletePosting } }) {
 			const { postings } = cache.readQuery({ query: GET_POSTINGS });
-			console.log(deletePosting);
+			// console.log(deletePosting);
 			cache.writeQuery({
 				query: GET_POSTINGS,
 				data: {
@@ -40,7 +40,7 @@ export default function PostingCard({ posting }) {
 				<span className='bold'>Title:</span> {posting.title}
 			</p>
 			<p>
-				<span className='bold'>Industry:</span> {posting.industry}
+				<span className='bold'>Industry:</span> {posting.industry.name}
 			</p>
 			<p>
 				<span className='bold'>Location:</span> {posting.location}

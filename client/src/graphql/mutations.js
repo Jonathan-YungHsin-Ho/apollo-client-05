@@ -20,7 +20,9 @@ export const ADD_POSTING = gql`
 			id
 			coach
 			title
-			industry
+			industry {
+				name
+			}
 			location
 			price
 			description
@@ -59,7 +61,9 @@ export const UPDATE_POSTING = gql`
 			id
 			coach
 			title
-			industry
+			industry {
+				name
+			}
 			location
 			price
 			description

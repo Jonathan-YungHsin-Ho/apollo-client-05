@@ -6,7 +6,9 @@ export const GET_POSTINGS = gql`
 			id
 			coach
 			title
-			industry
+			industry {
+				name
+			}
 			location
 			price
 			description
