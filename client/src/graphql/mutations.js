@@ -36,3 +36,33 @@ export const DELETE_POSTING = gql`
 		}
 	}
 `;
+
+export const UPDATE_POSTING = gql`
+	mutation UpdatePosting(
+		$id: String!
+		$coach: String
+		$title: String
+		$industry: String
+		$location: String
+		$price: Int
+		$description: String
+	) {
+		updatePosting(
+			id: $id
+			coach: $coach
+			title: $title
+			industry: $industry
+			location: $location
+			price: $price
+			description: $description
+		) {
+			id
+			coach
+			title
+			industry
+			location
+			price
+			description
+		}
+	}
+`;

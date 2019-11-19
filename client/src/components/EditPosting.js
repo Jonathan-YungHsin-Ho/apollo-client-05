@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
+import { useMutation } from '@apollo/react-hooks';
 
-export default function EditPosting({ posting }) {
+import { UPDATE_POSTING } from '../graphql/mutations';
+
+export default function EditPosting({ posting, handleEdit }) {
 	const [updatedPosting, setUpdatedPosting] = useState(posting);
+
+	const [updatePosting] = useMutation(UPDATE_POSTING);
 
 	const handleChange = e => {
 		setUpdatedPosting({
@@ -12,17 +17,19 @@ export default function EditPosting({ posting }) {
 	};
 
 	const handleSubmit = () => {
-		console.log(updatedPosting);
-		// addPosting({
-		// 	variables: {
-		// 		coach: posting.coach,
-		// 		title: posting.title,
-		// 		industry: posting.industry,
-		// 		location: posting.location,
-		// 		price: posting.price,
-		// 		description: posting.description,
-		// 	},
-		// });
+		// console.log(updatedPosting);
+		updatePosting({
+			variables: {
+				id: updatedPosting.id,
+				coach: updatedPosting.coach,
+				title: updatedPosting.title,
+				industry: updatedPosting.industry,
+				location: updatedPosting.location,
+				price: updatedPosting.price,
+				description: updatedPosting.description,
+			},
+		});
+		handleEdit();
 	};
 
 	return (

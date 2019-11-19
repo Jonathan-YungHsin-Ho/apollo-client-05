@@ -51,7 +51,7 @@ export default function PostingCard({ posting }) {
 			<p>
 				<span className='bold'>Description:</span> {posting.description}
 			</p>
-			{toggleEdit && <EditPosting posting={posting} />}
+			{toggleEdit && <EditPosting posting={posting} handleEdit={handleEdit} />}
 			<button onClick={handleEdit}>
 				{toggleEdit ? 'Cancel Edit' : 'Edit'}
 			</button>
